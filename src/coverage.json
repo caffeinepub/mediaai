@@ -1,0 +1,229 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-18T06:40:12.037Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 7,
+    "implemented": 7,
+    "items": [
+      {
+        "id": "REQ-1",
+        "summary": "Implement the MediaAI application shell with a collapsible left sidebar and a top header whose title changes based on the active tab (Image Maker, Video Studio, Voice Over), matching the structure and user-facing labels shown in the provided React snippet.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/App.tsx",
+          "frontend/src/components/mediaai/MediaAiShell.tsx",
+          "frontend/src/components/mediaai/SidebarNavItem.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/App.tsx",
+          "frontend/src/components/mediaai/MediaAiShell.tsx",
+          "frontend/src/components/mediaai/SidebarNavItem.tsx"
+        ]
+      },
+      {
+        "id": "REQ-2",
+        "summary": "Build the Image Maker tab UI with: (1) a text prompt input, (2) an \"Enhance\" action, (3) a \"Create\" action, and (4) a responsive image gallery grid that displays generated images and supports selecting an image to open a full-screen preview/editor.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/features/image-maker/ImageMakerView.tsx",
+          "frontend/src/features/image-maker/components/ImageGalleryGrid.tsx",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/features/image-maker/ImageMakerView.tsx",
+          "frontend/src/features/image-maker/components/ImageGalleryGrid.tsx",
+          "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-3",
+        "summary": "Implement the full-screen Image Preview & AI Editor panel for a selected image, including: selected image display, edit prompt textarea, \"Get Edit Suggestions\" action that renders up to 3 suggestion chips, one-click insertion of a suggestion into the edit prompt, and an \"Apply AI Changes\" action that adds the edited result back into the gallery and updates the selected image.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/features/image-maker/components/ImageEditorOverlay.tsx",
+          "frontend/src/features/image-maker/ImageMakerView.tsx",
+          "frontend/src/features/image-maker/components/SuggestionChips.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/features/image-maker/components/ImageEditorOverlay.tsx",
+          "frontend/src/features/image-maker/ImageMakerView.tsx",
+          "frontend/src/features/image-maker/components/SuggestionChips.tsx"
+        ]
+      },
+      {
+        "id": "REQ-4",
+        "summary": "Implement the Voice Over tab UI with: topic input, \"Generate Script\" action, script textarea (editable), voice selection dropdown with the listed options, and a \"Preview Audio\" button (UI-only; no real TTS integration).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/features/voice-over/VoiceOverView.tsx",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/features/voice-over/VoiceOverView.tsx",
+          "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-5",
+        "summary": "Implement the Video Studio tab UI as a presentational screen matching the provided snippet (icon, title, description, \"Add Photos\" and \"Generate Video\" buttons), without attempting actual video generation.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/features/video-studio/VideoStudioView.tsx",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/features/video-studio/VideoStudioView.tsx",
+          "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-6",
+        "summary": "Replace all direct calls to external Google Generative Language / Imagen endpoints with local stub implementations that simulate responses for: prompt enhancement, voice script generation, edit suggestions, image generation, and image editing; the UI must still behave as if requests are occurring (loading states, results rendering). Preserve the system/user prompt strings in code for future wiring, but do not perform network requests to these endpoints.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/lib/aiStubs.ts",
+          "frontend/src/lib/imagePlaceholders.ts",
+          "frontend/src/features/image-maker/ImageMakerView.tsx",
+          "frontend/src/features/image-maker/components/ImageEditorOverlay.tsx",
+          "frontend/src/features/voice-over/VoiceOverView.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/lib/aiStubs.ts",
+          "frontend/src/features/image-maker/ImageMakerView.tsx",
+          "frontend/src/features/image-maker/components/ImageEditorOverlay.tsx",
+          "frontend/src/features/voice-over/VoiceOverView.tsx"
+        ]
+      },
+      {
+        "id": "REQ-7",
+        "summary": "Apply a coherent, consistent visual theme across the app based on the provided dark, cinematic UI direction (slate/near-black surfaces with electric accent colors), ensuring spacing, typography, borders, and hover/focus states are consistent across tabs and modals.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/index.css",
+          "frontend/tailwind.config.js",
+          "frontend/src/components/mediaai/MediaAiShell.tsx",
+          "frontend/src/features/image-maker/components/ImageEditorOverlay.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/index.css",
+          "frontend/tailwind.config.js",
+          "frontend/src/components/mediaai/MediaAiShell.tsx",
+          "frontend/src/features/image-maker/components/ImageEditorOverlay.tsx"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "backend/main.mo",
+    "build-request.json",
+    "build-template/Dockerfile",
+    "build-template/LICENSE",
+    "build-template/README.md",
+    "build-template/deploy.sh",
+    "build-template/icp.yaml",
+    "build-template/package.json",
+    "build-template/pnpm-lock.yaml",
+    "build-template/pnpm-workspace.yaml",
+    "build-template/scripts/prune-unused-images.js",
+    "build-template/scripts/resize-images.js",
+    "build-template/src/backend/canister.yaml",
+    "build-template/src/backend/system-idl/aaaaa-aa.did",
+    "build-template/src/frontend/canister.yaml",
+    "build-template/src/frontend/components.json",
+    "build-template/src/frontend/env.json",
+    "build-template/src/frontend/eslint-rules/no-bigint-in-query-keys.js",
+    "build-template/src/frontend/eslint-rules/require-internet-identity-provider.js",
+    "build-template/src/frontend/eslint.config.js",
+    "build-template/src/frontend/package.json",
+    "build-template/src/frontend/postcss.config.js",
+    "build-template/src/frontend/src/components/ui/accordion.tsx",
+    "build-template/src/frontend/src/components/ui/alert-dialog.tsx",
+    "build-template/src/frontend/src/components/ui/alert.tsx",
+    "build-template/src/frontend/src/components/ui/aspect-ratio.tsx",
+    "build-template/src/frontend/src/components/ui/avatar.tsx",
+    "build-template/src/frontend/src/components/ui/badge.tsx",
+    "build-template/src/frontend/src/components/ui/breadcrumb.tsx",
+    "build-template/src/frontend/src/components/ui/button.tsx",
+    "build-template/src/frontend/src/components/ui/calendar.tsx",
+    "build-template/src/frontend/src/components/ui/card.tsx",
+    "build-template/src/frontend/src/components/ui/carousel.tsx",
+    "build-template/src/frontend/src/components/ui/chart.tsx",
+    "build-template/src/frontend/src/components/ui/checkbox.tsx",
+    "build-template/src/frontend/src/components/ui/collapsible.tsx",
+    "build-template/src/frontend/src/components/ui/command.tsx",
+    "build-template/src/frontend/src/components/ui/context-menu.tsx",
+    "build-template/src/frontend/src/components/ui/dialog.tsx",
+    "build-template/src/frontend/src/components/ui/drawer.tsx",
+    "build-template/src/frontend/src/components/ui/dropdown-menu.tsx",
+    "build-template/src/frontend/src/components/ui/form.tsx",
+    "build-template/src/frontend/src/components/ui/hover-card.tsx",
+    "build-template/src/frontend/src/components/ui/input-otp.tsx",
+    "build-template/src/frontend/src/components/ui/input.tsx",
+    "build-template/src/frontend/src/components/ui/label.tsx",
+    "build-template/src/frontend/src/components/ui/menubar.tsx",
+    "build-template/src/frontend/src/components/ui/navigation-menu.tsx",
+    "build-template/src/frontend/src/components/ui/pagination.tsx",
+    "build-template/src/frontend/src/components/ui/popover.tsx",
+    "build-template/src/frontend/src/components/ui/progress.tsx",
+    "build-template/src/frontend/src/components/ui/radio-group.tsx",
+    "build-template/src/frontend/src/components/ui/resizable.tsx",
+    "build-template/src/frontend/src/components/ui/scroll-area.tsx",
+    "build-template/src/frontend/src/components/ui/select.tsx",
+    "build-template/src/frontend/src/components/ui/separator.tsx",
+    "build-template/src/frontend/src/components/ui/sheet.tsx",
+    "build-template/src/frontend/src/components/ui/sidebar.tsx",
+    "build-template/src/frontend/src/components/ui/skeleton.tsx",
+    "build-template/src/frontend/src/components/ui/slider.tsx",
+    "build-template/src/frontend/src/components/ui/sonner.tsx",
+    "build-template/src/frontend/src/components/ui/switch.tsx",
+    "build-template/src/frontend/src/components/ui/table.tsx",
+    "build-template/src/frontend/src/components/ui/tabs.tsx",
+    "build-template/src/frontend/src/components/ui/textarea.tsx",
+    "build-template/src/frontend/src/components/ui/toggle-group.tsx",
+    "build-template/src/frontend/src/components/ui/toggle.tsx",
+    "build-template/src/frontend/src/components/ui/tooltip.tsx",
+    "build-template/src/frontend/src/hooks/use-mobile.tsx",
+    "build-template/src/frontend/src/lib/utils.ts",
+    "build-template/src/frontend/tsconfig.json",
+    "build-template/src/frontend/vite.config.js",
+    "build-template/tsconfig.json",
+    "caffeine.lock.json",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/src/App.tsx",
+    "frontend/src/backend.d.ts",
+    "frontend/src/backend.ts",
+    "frontend/src/components/mediaai/MediaAiShell.tsx",
+    "frontend/src/components/mediaai/SidebarNavItem.tsx",
+    "frontend/src/config.ts",
+    "frontend/src/declarations/backend.did.d.ts",
+    "frontend/src/declarations/backend.did.js",
+    "frontend/src/features/image-maker/ImageMakerView.tsx",
+    "frontend/src/features/image-maker/components/ImageEditorOverlay.tsx",
+    "frontend/src/features/image-maker/components/ImageGalleryGrid.tsx",
+    "frontend/src/features/image-maker/components/SuggestionChips.tsx",
+    "frontend/src/features/video-studio/VideoStudioView.tsx",
+    "frontend/src/features/voice-over/VoiceOverView.tsx",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/index.css",
+    "frontend/src/lib/aiStubs.ts",
+    "frontend/src/main.tsx",
+    "frontend/src/ui-summary.json",
+    "frontend/src/utils/StorageClient.ts",
+    "frontend/tailwind.config.js",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

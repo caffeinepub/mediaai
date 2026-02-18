@@ -1,0 +1,15 @@
+{
+  "frontend/src/App.tsx": "Main application component that manages tab state and renders the appropriate view (Image Maker, Video Studio, or Voice Over) within the MediaAI shell.",
+  "frontend/src/components/mediaai/MediaAiShell.tsx": "Application shell component providing the collapsible sidebar navigation, dynamic header title, and main content area with dark cinematic styling.",
+  "frontend/src/components/mediaai/SidebarNavItem.tsx": "Reusable sidebar navigation button component that displays an icon and optional label with active state styling.",
+  "frontend/src/features/image-maker/ImageMakerView.tsx": "Image Maker tab view managing prompt input, image generation, gallery display, and full-screen editor overlay with all AI operations using local stubs.",
+  "frontend/src/features/image-maker/components/ImageGalleryGrid.tsx": "Responsive grid component displaying generated images as square cards with hover actions for viewing and downloading.",
+  "frontend/src/features/image-maker/components/ImageEditorOverlay.tsx": "Full-screen modal overlay for editing selected images with AI suggestions, edit prompt input, and apply/save actions.",
+  "frontend/src/features/image-maker/components/SuggestionChips.tsx": "Component rendering AI edit suggestion chips that can be clicked to populate the edit prompt textarea.",
+  "frontend/src/features/video-studio/VideoStudioView.tsx": "Video Studio tab presenting a placeholder UI with Add Photos and Generate Video buttons (no actual video generation).",
+  "frontend/src/features/voice-over/VoiceOverView.tsx": "Voice Over tab with AI script generation from topics, editable script textarea, voice selection dropdown, and non-functional preview button.",
+  "frontend/src/lib/aiStubs.ts": "Local stub implementations for all AI features (prompt enhancement, image generation/editing, suggestions, voice scripts) that simulate API responses without external calls while preserving system prompts for future integration.",
+  "frontend/src/index.css": "Global styles with OKLCH-based dark cinematic color system, custom slate/blue/purple color tokens, and typography settings.",
+  "frontend/tailwind.config.js": "Tailwind configuration extended with custom dark cinematic color palette (slate, blue, purple), enhanced border radius values, and shadow utilities.",
+  "frontend/src/hooks/useQueries.ts": "Empty placeholder file as backend has no methods; all operations are client-side with local stubs."
+}

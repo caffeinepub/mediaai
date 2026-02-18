@@ -1,0 +1,201 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "MediaAI Frontend UI (stubbed AI)",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Create the MediaAI app shell with a collapsible left sidebar and a dynamic header title driven by the active tab (Image Maker, Video Studio, Voice Over).",
+      "acceptanceCriteria": [
+        "Sidebar renders three navigation items (Image Maker, Video Studio, Voice Over) and highlights the active item.",
+        "Sidebar can be toggled between expanded and collapsed states; when collapsed, labels are hidden and icons remain visible.",
+        "Header title updates correctly when switching tabs.",
+        "All user-facing text is in English."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "create",
+          "description": "Implement the top-level MediaAI shell layout: collapsible left sidebar, top header with dynamic title text for active tab, and tab content switching for Image Maker / Video Studio / Voice Over. Ensure labels match the provided snippet and active nav item is highlighted."
+        },
+        {
+          "path": "frontend/src/components/mediaai/MediaAiShell.tsx",
+          "operation": "create",
+          "description": "Create a reusable shell component encapsulating sidebar + header + main content area, including the collapse toggle behavior and activeTab state contract used by App."
+        },
+        {
+          "path": "frontend/src/components/mediaai/SidebarNavItem.tsx",
+          "operation": "create",
+          "description": "Add a small sidebar nav item component that supports icon-only collapsed rendering, active styling, and English labels for the three required tabs."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Build the Image Maker tab UI with prompt input, Enhance/Create actions, and a responsive selectable image gallery that opens a full-screen preview/editor.",
+      "acceptanceCriteria": [
+        "Prompt input, Enhance button, and Create button are present and disabled appropriately when prompt is empty or a request is in progress.",
+        "A loading indicator is shown on Create/Apply actions when loading=true (as in the snippet).",
+        "Generated images appear as square cards in a responsive grid (1/2/3 columns across breakpoints).",
+        "Clicking an image opens the full-screen preview/editor and sets it as the selected image."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/features/image-maker/ImageMakerView.tsx",
+          "operation": "create",
+          "description": "Implement the Image Maker tab UI: prompt input (with the specified placeholder), Enhance and Create actions wired to local stubbed AI functions, loading state handling, and a responsive gallery grid of square cards that sets selectedImage on click."
+        },
+        {
+          "path": "frontend/src/features/image-maker/components/ImageGalleryGrid.tsx",
+          "operation": "create",
+          "description": "Create the responsive image gallery grid component with 1/2/3 column behavior at breakpoints, square card styling, and click-to-select behavior."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire the ImageMakerView into the shell so selecting the Image Maker tab renders this view and the header title matches the required wording."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Implement a full-screen image preview & AI editor overlay with edit prompt, suggestion chips (max 3), and Apply action that adds the edited image back into the gallery and updates selection.",
+      "acceptanceCriteria": [
+        "Full-screen modal/overlay opens when selectedImage is set and closes via Cancel/Close Preview actions.",
+        "The editor panel contains a textarea for edit instructions and an Apply action that is disabled when edit text is empty or loading=true.",
+        "Clicking Get Edit Suggestions shows up to 3 short suggestion chips; clicking a chip populates the edit prompt textarea.",
+        "Applying an edit results in a new image being prepended to the gallery and becomes the currently selected image (UI behavior)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/features/image-maker/components/ImageEditorOverlay.tsx",
+          "operation": "create",
+          "description": "Build the full-screen overlay UI for selectedImage: large image display, edit textarea, Get Edit Suggestions action, up-to-3 suggestion chips with one-click insertion, Apply AI Changes action, and Close/Cancel controls."
+        },
+        {
+          "path": "frontend/src/features/image-maker/ImageMakerView.tsx",
+          "operation": "modify",
+          "description": "Integrate ImageEditorOverlay: manage selectedImage, editPrompt, aiSuggestions, and loading; ensure Apply prepends the new image to the gallery and updates selectedImage as specified."
+        },
+        {
+          "path": "frontend/src/features/image-maker/components/SuggestionChips.tsx",
+          "operation": "create",
+          "description": "Add a small component to render up to three suggestion chips and handle chip click to populate the edit prompt (including stripping numeric prefixes as per the snippet behavior)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Implement the Voice Over tab UI with topic input, stubbed script generation, editable script textarea, voice dropdown options, and a non-functional Preview Audio button.",
+      "acceptanceCriteria": [
+        "User can enter a topic and click Generate Script to populate the script textarea (using a stubbed generator per REQ-6).",
+        "User can manually edit the generated script in the textarea.",
+        "Voice dropdown renders the three options exactly as shown.",
+        "Preview Audio button is present and clearly indicated as a non-functional preview (no external API calls)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/features/voice-over/VoiceOverView.tsx",
+          "operation": "create",
+          "description": "Implement the Voice Over tab UI: topic input (with specified placeholder), ✨ Generate Script action using local stub logic, editable script textarea (with specified placeholder), voice selection dropdown with the three exact options, and a UI-only Preview Audio button with clear non-functional indication."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire the VoiceOverView into the shell so selecting the Voice Over tab renders this view and the header title matches the required wording."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Implement the Video Studio tab as a presentational screen matching the snippet with placeholder button actions and no real video generation.",
+      "acceptanceCriteria": [
+        "Video Studio tab shows the title, description, and the two buttons.",
+        "Buttons are wired to placeholder actions (e.g., toast/alert or no-op) but do not call any external services.",
+        "No actual video file generation is implemented."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/features/video-studio/VideoStudioView.tsx",
+          "operation": "create",
+          "description": "Create the Video Studio presentational screen with the required title, description, icon area, and Add Photos / Generate Video buttons wired to safe placeholder actions (no external calls)."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire the VideoStudioView into the shell so selecting the Video Studio tab renders this view and the header title matches the required wording."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Remove/avoid external AI network calls and replace them with local stub implementations for prompt enhancement, script generation, edit suggestions, image creation, and image editing while preserving prompt strings in code.",
+      "acceptanceCriteria": [
+        "No frontend code performs fetch() (or equivalent) requests to generativelanguage.googleapis.com (or any other external AI endpoints).",
+        "Enhance Prompt produces a longer, more detailed prompt string derived from the input (deterministic or pseudo-random stub is acceptable).",
+        "Generate Script produces a ~50–70 word English script based on the topic (stubbed).",
+        "Get Edit Suggestions returns exactly 3 short English suggestions (stubbed).",
+        "Create produces a new image result suitable for the gallery (e.g., generated placeholder image data URL) and clears the prompt input afterward.",
+        "Apply AI Changes produces a new image result and sets it as selected."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/lib/aiStubs.ts",
+          "operation": "create",
+          "description": "Implement local stub functions for: enhancePrompt, generateImage, getEditSuggestions (exactly 3), applyImageEdit, and generateVoiceScript (~50–70 English words). Preserve the referenced future-wiring prompt strings/constants in this module, but do not perform any network requests."
+        },
+        {
+          "path": "frontend/src/lib/imagePlaceholders.ts",
+          "operation": "create",
+          "description": "Add helper(s) to generate deterministic placeholder image data URLs (e.g., via Canvas gradients/text) for gallery results used by the stubbed image creation/editing flows."
+        },
+        {
+          "path": "frontend/src/features/image-maker/ImageMakerView.tsx",
+          "operation": "modify",
+          "description": "Replace any AI/network logic with calls into frontend/src/lib/aiStubs.ts; ensure loading states, prompt clearing after Create, and edited image insertion behaviors match the acceptance criteria."
+        },
+        {
+          "path": "frontend/src/features/image-maker/components/ImageEditorOverlay.tsx",
+          "operation": "modify",
+          "description": "Wire Get Edit Suggestions and Apply AI Changes to the stubbed implementations in frontend/src/lib/aiStubs.ts, maintaining required loading/disabled states and selection updates."
+        },
+        {
+          "path": "frontend/src/features/voice-over/VoiceOverView.tsx",
+          "operation": "modify",
+          "description": "Use the stubbed voice script generator from frontend/src/lib/aiStubs.ts for ✨ Generate Script and ensure no external calls are made."
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Apply a consistent dark, cinematic theme across shell, tabs, and overlays with coherent spacing, typography, borders, and interactive states.",
+      "acceptanceCriteria": [
+        "App has a consistent dark/cinematic look across sidebar, header, tab bodies, and modal overlay.",
+        "Buttons/inputs have clear hover and focus states and meet basic readability/contrast expectations.",
+        "No user-facing text uses placeholder lorem ipsum; all labels remain English and aligned with the provided snippet."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "create",
+          "description": "Add global styling consistent with the dark/cinematic direction (near-black surfaces, slate text, electric accent focus rings) and ensure base elements support consistent typography, spacing, and focus visibility across the app."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Adjust/extend Tailwind theme tokens as needed to support the cinematic palette and consistent component styling across sidebar/header/modals (without introducing new global stylesheet entry points)."
+        },
+        {
+          "path": "frontend/src/components/mediaai/MediaAiShell.tsx",
+          "operation": "modify",
+          "description": "Apply consistent layout styling for sidebar, header, and content surfaces (dark slate/near-black), including hover/focus states for navigation items and the collapse toggle to match the requested UI direction."
+        },
+        {
+          "path": "frontend/src/features/image-maker/components/ImageEditorOverlay.tsx",
+          "operation": "modify",
+          "description": "Ensure the full-screen overlay uses a cohesive dark modal treatment with readable typography, consistent padding/borders, and clear hover/focus states for actions and chips."
+        }
+      ]
+    }
+  ]
+}

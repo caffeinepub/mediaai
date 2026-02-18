@@ -1,0 +1,190 @@
+{
+  "kind": "build_request",
+  "title": "MediaAI UI: Image maker, AI editor suggestions, video studio, and voice script tab (stubbed AI)",
+  "projectName": "MediaAI",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Implement the MediaAI application shell with a collapsible left sidebar and a top header whose title changes based on the active tab (Image Maker, Video Studio, Voice Over), matching the structure and user-facing labels shown in the provided React snippet.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "<span className=\"font-bold text-xl tracking-tight\">MediaAI</span>",
+          "label=\"Image Maker\"",
+          "label=\"Video Studio\"",
+          "label=\"Voice Over\"",
+          "{activeTab === 'image' && 'AI Image Creation & Editing'}",
+          "{activeTab === 'video' && 'Video Slideshow Builder'}",
+          "{activeTab === 'voice' && 'AI Voice Synthesizer'}"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Sidebar renders three navigation items (Image Maker, Video Studio, Voice Over) and highlights the active item.",
+        "Sidebar can be toggled between expanded and collapsed states; when collapsed, labels are hidden and icons remain visible.",
+        "Header title updates correctly when switching tabs.",
+        "All user-facing text is in English."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Build the Image Maker tab UI with: (1) a text prompt input, (2) an \"Enhance\" action, (3) a \"Create\" action, and (4) a responsive image gallery grid that displays generated images and supports selecting an image to open a full-screen preview/editor.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "placeholder=\"Describe the photo you want to create...\"",
+          "onClick={enhancePrompt}",
+          "onClick={generateImage}",
+          "{images.map((img, idx) => (",
+          "onClick={() => { setSelectedImage(img); setAiSuggestions([]); }}"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Prompt input, Enhance button, and Create button are present and disabled appropriately when prompt is empty or a request is in progress.",
+        "A loading indicator is shown on Create/Apply actions when loading=true (as in the snippet).",
+        "Generated images appear as square cards in a responsive grid (1/2/3 columns across breakpoints).",
+        "Clicking an image opens the full-screen preview/editor and sets it as the selected image."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Implement the full-screen Image Preview & AI Editor panel for a selected image, including: selected image display, edit prompt textarea, \"Get Edit Suggestions\" action that renders up to 3 suggestion chips, one-click insertion of a suggestion into the edit prompt, and an \"Apply AI Changes\" action that adds the edited result back into the gallery and updates the selected image.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "{/* Full Screen Image Preview & Editor */}",
+          "Get Edit Suggestions ✨",
+          "setEditPrompt(s.replace(/^\\d+\\.\\s*/, ''))",
+          "Apply AI Changes",
+          "setImages([newUrl, ...images]);",
+          "setSelectedImage(newUrl);"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Full-screen modal/overlay opens when selectedImage is set and closes via Cancel/Close Preview actions.",
+        "The editor panel contains a textarea for edit instructions and an Apply action that is disabled when edit text is empty or loading=true.",
+        "Clicking Get Edit Suggestions shows up to 3 short suggestion chips; clicking a chip populates the edit prompt textarea.",
+        "Applying an edit results in a new image being prepended to the gallery and becomes the currently selected image (UI behavior)."
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Implement the Voice Over tab UI with: topic input, \"Generate Script\" action, script textarea (editable), voice selection dropdown with the listed options, and a \"Preview Audio\" button (UI-only; no real TTS integration).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "AI Script Writer ✨",
+          "placeholder=\"Enter a topic (e.g., A trip to Mars, Cooking a pizza)\"",
+          "✨ Generate Script",
+          "placeholder=\"Type or generate a script...\"",
+          "<option>Male - Zephyr</option>",
+          "<option>Female - Kore</option>",
+          "<option>Excited - Fenrir</option>",
+          "Preview Audio"
+        ]
+      },
+      "acceptanceCriteria": [
+        "User can enter a topic and click Generate Script to populate the script textarea (using a stubbed generator per REQ-6).",
+        "User can manually edit the generated script in the textarea.",
+        "Voice dropdown renders the three options exactly as shown.",
+        "Preview Audio button is present and clearly indicated as a non-functional preview (no external API calls)."
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Implement the Video Studio tab UI as a presentational screen matching the provided snippet (icon, title, description, \"Add Photos\" and \"Generate Video\" buttons), without attempting actual video generation.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Video Slideshow Creator",
+          "Select generated images to combine them into a cinematic video with AI transitions.",
+          "Add Photos",
+          "Generate Video"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Video Studio tab shows the title, description, and the two buttons.",
+        "Buttons are wired to placeholder actions (e.g., toast/alert or no-op) but do not call any external services.",
+        "No actual video file generation is implemented."
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Replace all direct calls to external Google Generative Language / Imagen endpoints with local stub implementations that simulate responses for: prompt enhancement, voice script generation, edit suggestions, image generation, and image editing; the UI must still behave as if requests are occurring (loading states, results rendering). Preserve the system/user prompt strings in code for future wiring, but do not perform network requests to these endpoints.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent",
+          "https://generativelanguage.googleapis.com/v1beta/models/imagen-4.0-generate-001:predict",
+          "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image-preview:generateContent",
+          "const apiKey = \"\"; // Environment handles this"
+        ]
+      },
+      "acceptanceCriteria": [
+        "No frontend code performs fetch() (or equivalent) requests to generativelanguage.googleapis.com (or any other external AI endpoints).",
+        "Enhance Prompt produces a longer, more detailed prompt string derived from the input (deterministic or pseudo-random stub is acceptable).",
+        "Generate Script produces a ~50–70 word English script based on the topic (stubbed).",
+        "Get Edit Suggestions returns exactly 3 short English suggestions (stubbed).",
+        "Create produces a new image result suitable for the gallery (e.g., generated placeholder image data URL) and clears the prompt input afterward.",
+        "Apply AI Changes produces a new image result and sets it as selected."
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "text": "Apply a coherent, consistent visual theme across the app based on the provided dark, cinematic UI direction (slate/near-black surfaces with electric accent colors), ensuring spacing, typography, borders, and hover/focus states are consistent across tabs and modals.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "className=\"flex h-screen bg-slate-950 text-slate-100\"",
+          "bg-slate-900/50",
+          "focus:ring-blue-500",
+          "bg-blue-600",
+          "bg-purple-600"
+        ]
+      },
+      "acceptanceCriteria": [
+        "App has a consistent dark/cinematic look across sidebar, header, tab bodies, and modal overlay.",
+        "Buttons/inputs have clear hover and focus states and meet basic readability/contrast expectations.",
+        "No user-facing text uses placeholder lorem ipsum; all labels remain English and aligned with the provided snippet."
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not modify files under frontend/src/components/ui (compose them instead if needed).",
+    "Do not modify any paths listed as immutable in SYSTEM_CONTEXT (e.g., frontend/src/main.tsx and identity/actor hooks).",
+    "Backend must remain a single Motoko actor (no additional backend services).",
+    "Do not integrate external LLM or third-party AI services (e.g., Google Gemini/Imagen) in this build; implement stubs instead."
+  ],
+  "nonGoals": [
+    "Real image generation via Imagen 4.0.",
+    "Real image editing via Gemini Flash Image.",
+    "Real prompt enhancement via Gemini.",
+    "Real text-to-speech audio generation or playback from an AI provider.",
+    "Real video slideshow generation/export."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-18T06:40:12.034Z",
+  "summary": "Most of the requested MediaAI UI is implemented: app shell with collapsible sidebar + 3 tabs, Image Maker with gallery and editor overlay components, Video Studio presentational screen, Voice Over script UI, and local AI stubs with dark theme styling. However, some requirements are either not met or not verifiable from the truncated diff, and a few extra features were added that were not requested.",
+  "missing_requirements": [
+    {
+      "id": "REQ-1",
+      "requirement": "Top header title changes based on the active tab using the exact user-facing labels shown in the provided snippet (Image Maker, Video Studio, Voice Over).",
+      "reason": "The header titles implemented do change by tab, but they are different strings ('AI Image Creation & Editing', 'Video Slideshow Builder', 'AI Voice Synthesizer') rather than the tab labels specified in the requirement.",
+      "evidence": [
+        "frontend/src/components/mediaai/MediaAiShell.tsx"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "requirement": "Show a loading indicator on Create actions when loading=true (as in the snippet).",
+      "reason": "ImageMakerView is truncated in the diff at the Create button; the Create button’s loading-state rendering (spinner/text) is not visible, so this AC is not verifiable from the provided diff summary.",
+      "evidence": [
+        "frontend/src/features/image-maker/ImageMakerView.tsx (truncated)"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "requirement": "Clicking an image opens the full-screen preview/editor and sets it as the selected image.",
+      "reason": "The gallery component calls onImageSelect, and the overlay component exists, but ImageMakerView is truncated, so the actual wiring/rendering of the full-screen overlay when selectedImage is set is not fully visible/confirmable from the diff summary.",
+      "evidence": [
+        "frontend/src/features/image-maker/components/ImageGalleryGrid.tsx",
+        "frontend/src/features/image-maker/components/ImageEditorOverlay.tsx",
+        "frontend/src/features/image-maker/ImageMakerView.tsx (truncated)"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "requirement": "Preview Audio button is present and clearly indicated as a non-functional preview (no external API calls).",
+      "reason": "The button is present and the handler logs to console, but the UI does not visibly indicate to the user that preview is non-functional (no label/text in UI indicating it’s UI-only).",
+      "evidence": [
+        "frontend/src/features/voice-over/VoiceOverView.tsx"
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "requirement": "Provide stub implementations that simulate responses for image editing and voice script generation (and preserve prompt strings) without external calls.",
+      "reason": "aiStubs.ts is truncated at the image-edit function, so the presence/behavior of applyImageEdit and generateVoiceScript cannot be verified from the shown content (though they are imported/used elsewhere).",
+      "evidence": [
+        "frontend/src/lib/aiStubs.ts (truncated)",
+        "frontend/src/features/image-maker/ImageMakerView.tsx (truncated)",
+        "frontend/src/features/voice-over/VoiceOverView.tsx"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Download/Save functionality for images (download buttons in gallery and a 'Save' button in the editor overlay).",
+      "reason": "The BuildRequest does not ask for image downloading/saving features; only gallery display, selection, and AI edit/apply behavior are specified.",
+      "evidence": [
+        "frontend/src/features/image-maker/components/ImageGalleryGrid.tsx",
+        "frontend/src/features/image-maker/components/ImageEditorOverlay.tsx"
+      ]
+    },
+    {
+      "description": "Extra gallery hover action button with a Layers icon (no-op) in each image card.",
+      "reason": "Not requested by any requirement/AC; the gallery only needed selectable square cards opening the editor.",
+      "evidence": [
+        "frontend/src/features/image-maker/components/ImageGalleryGrid.tsx"
+      ]
+    },
+    {
+      "description": "Internet Identity and actor hooks added (authentication/actor query plumbing).",
+      "reason": "Not part of the requested MediaAI UI requirements, and the BuildRequest constraints specifically call out identity/actor hooks as immutable paths (even though these are added, not modified).",
+      "evidence": [
+        "frontend/src/hooks/useInternetIdentity.ts (truncated)",
+        "frontend/src/hooks/useActor.ts",
+        "frontend/src/main.tsx"
+      ]
+    },
+    {
+      "description": "Backend actor stub file added with no methods.",
+      "reason": "Backend work was not requested for these UI requirements (and REQ-6 explicitly focuses on frontend stubs). Adding an empty Motoko actor is extra scope beyond the request.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    }
+  ],
+  "confidence": 0.62,
+  "changed_files": [
+    "all_files_summary.json",
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/src/App.tsx",
+    "frontend/src/components/mediaai/MediaAiShell.tsx",
+    "frontend/src/components/mediaai/SidebarNavItem.tsx",
+    "frontend/src/features/image-maker/ImageMakerView.tsx",
+    "frontend/src/features/image-maker/components/ImageEditorOverlay.tsx",
+    "frontend/src/features/image-maker/components/ImageGalleryGrid.tsx",
+    "frontend/src/features/image-maker/components/SuggestionChips.tsx",
+    "frontend/src/features/video-studio/VideoStudioView.tsx",
+    "frontend/src/features/voice-over/VoiceOverView.tsx",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/index.css",
+    "frontend/src/lib/aiStubs.ts",
+    "frontend/src/main.tsx",
+    "frontend/tailwind.config.js",
+    "project_state.json"
+  ]
+}

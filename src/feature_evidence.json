@@ -1,0 +1,145 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-implement-the-mediaai-application-shell-with-a-collapsible-left-sidebar-and-a-top-header-whose-title-changes-based-on-the-active-tab-image-maker-video-studio-voice-over-matching-the-structure-and-user-facing-labels-shown-in-the-provided-react-snippet",
+      "featureTitle": "Implement the MediaAI application shell with a collapsible left sidebar and a top header whose title changes based on the active tab (Image Maker, Video Studio, Voice Over), matching the structure and user-facing labels shown in the provided React snippet.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/mediaai/MediaAiShell.tsx",
+        "frontend/src/components/mediaai/SidebarNavItem.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-build-the-image-maker-tab-ui-with-1-a-text-prompt-input-2-an-enhance-action-3-a-create-action-and-4-a-responsive-image-gallery-grid-that-displays-generated-images-and-supports-selecting-an-image-to-open-a-full-screen-preview-editor",
+      "featureTitle": "Build the Image Maker tab UI with: (1) a text prompt input, (2) an \"Enhance\" action, (3) a \"Create\" action, and (4) a responsive image gallery grid that displays generated images and supports selecting an image to open a full-screen preview/editor.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/features/image-maker/ImageMakerView.tsx",
+        "frontend/src/features/image-maker/components/ImageGalleryGrid.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-the-full-screen-image-preview-ai-editor-panel-for-a-selected-image-including-selected-image-display-edit-prompt-textarea-get-edit-suggestions-action-that-renders-up-to-3-suggestion-chips-one-click-insertion-of-a-suggestion-into-the-edit-prompt-and-an-apply-ai-changes-action-that-adds-the-edited-result-back-into-the-gallery-and-updates-the-selected-image",
+      "featureTitle": "Implement the full-screen Image Preview & AI Editor panel for a selected image, including: selected image display, edit prompt textarea, \"Get Edit Suggestions\" action that renders up to 3 suggestion chips, one-click insertion of a suggestion into the edit prompt, and an \"Apply AI Changes\" action that adds the edited result back into the gallery and updates the selected image.",
+      "files": [
+        "frontend/src/features/image-maker/ImageMakerView.tsx",
+        "frontend/src/features/image-maker/components/ImageEditorOverlay.tsx",
+        "frontend/src/features/image-maker/components/SuggestionChips.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-the-voice-over-tab-ui-with-topic-input-generate-script-action-script-textarea-editable-voice-selection-dropdown-with-the-listed-options-and-a-preview-audio-button-ui-only-no-real-tts-integration",
+      "featureTitle": "Implement the Voice Over tab UI with: topic input, \"Generate Script\" action, script textarea (editable), voice selection dropdown with the listed options, and a \"Preview Audio\" button (UI-only; no real TTS integration).",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/features/voice-over/VoiceOverView.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-the-video-studio-tab-ui-as-a-presentational-screen-matching-the-provided-snippet-icon-title-description-add-photos-and-generate-video-buttons-without-attempting-actual-video-generation",
+      "featureTitle": "Implement the Video Studio tab UI as a presentational screen matching the provided snippet (icon, title, description, \"Add Photos\" and \"Generate Video\" buttons), without attempting actual video generation.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/features/video-studio/VideoStudioView.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-replace-all-direct-calls-to-external-google-generative-language-imagen-endpoints-with-local-stub-implementations-that-simulate-responses-for-prompt-enhancement-voice-script-generation-edit-suggestions-image-generation-and-image-editing-the-ui-must-still-behave-as-if-requests-are-occurring-loading-states-results-rendering-preserve-the-system-user-prompt-strings-in-code-for-future-wiring-but-do-not-perform-network-requests-to-these-endpoints",
+      "featureTitle": "Replace all direct calls to external Google Generative Language / Imagen endpoints with local stub implementations that simulate responses for: prompt enhancement, voice script generation, edit suggestions, image generation, and image editing; the UI must still behave as if requests are occurring (loading states, results rendering). Preserve the system/user prompt strings in code for future wiring, but do not perform network requests to these endpoints.",
+      "files": [
+        "frontend/src/features/image-maker/ImageMakerView.tsx",
+        "frontend/src/features/image-maker/components/ImageEditorOverlay.tsx",
+        "frontend/src/features/voice-over/VoiceOverView.tsx",
+        "frontend/src/lib/aiStubs.ts"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-apply-a-coherent-consistent-visual-theme-across-the-app-based-on-the-provided-dark-cinematic-ui-direction-slate-near-black-surfaces-with-electric-accent-colors-ensuring-spacing-typography-borders-and-hover-focus-states-are-consistent-across-tabs-and-modals",
+      "featureTitle": "Apply a coherent, consistent visual theme across the app based on the provided dark, cinematic UI direction (slate/near-black surfaces with electric accent colors), ensuring spacing, typography, borders, and hover/focus states are consistent across tabs and modals.",
+      "files": [
+        "frontend/src/components/mediaai/MediaAiShell.tsx",
+        "frontend/src/features/image-maker/components/ImageEditorOverlay.tsx",
+        "frontend/src/index.css",
+        "frontend/tailwind.config.js"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-7"
+      ],
+      "confidence": "high"
+    }
+  ]
+}
